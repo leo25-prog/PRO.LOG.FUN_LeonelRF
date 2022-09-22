@@ -1,7 +1,7 @@
 //FUNCION PRINCIPAL EN LA CUAL VAMOS A RECIBIR EL VALOR A EVALUAR
 //Y AQUI ES DONDE VAMOS A IMPRIMIR SI CUMPLE CON FIZZ, BUZZ, AMBAS O NINGUNA
 fun main(args: Array<String>) {
-    val nume = 178
+    val nume = 175981
     println( nume.toString() + "\n" + numero(nume))
 }
 
