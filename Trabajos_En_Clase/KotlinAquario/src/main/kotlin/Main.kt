@@ -20,23 +20,39 @@ fun main(args: Array<String>) {
 
     println(updateDirty( 30, waterFilter).toString())
     println(updateDirty( 30, { dirty: Int -> dirty * 3 }).toString())
+    println(updateDirty(16, :: incrementDirty).toString())
 
-    println(updateDirty(15, :: incrementDirty).toString())
+    println(updateDirty(30) {dirty: Int -> dirty + 23})
 
     val lista = listOf ("Lunes", "Martes", "Miercoles", "Jueves", "Viernes")
-    lista.forEach(::print)
-    //lista.forEach(println(it))
+    lista.forEach(::println)
+    lista.forEach{println(it)}
 
-    println((updateDirty(30) {dirty: Int -> dirty + 23}).toString())
-
-
-    val decoration = listOf("rock", "pagoda", "plastic plant", "allogator", "flowerpot")
-    println(decoration.filter {it[0] == 'p'})
-
-    //val diasConM = lista.filter{it[0] == 'a'}
+    //val diasConM = lista.filter{it[0] == 'm'}
     val diasConM = lista.filter( {el -> el[0] == 'm'})
     println(diasConM)
 
+    val filtroPlaneado = lista.asSequence().filter {it[0] == 'm'}
+    println(filtroPlaneado)
+
+    val listaNueva = filtroPlaneado.toList()
+    println(listaNueva)
+
+    val lazyMap = lista.asSequence().map{
+        println("  access " + it)
+        "¡" + it + "!"
+    }
+
+    println("lazy: $lazyMap")
+    println("---------------")
+    println("first: ${lazyMap.first()}")
+    println("---------------")
+    println("last: ${lazyMap.last()}")
+    println("---------------")
+    println("all: ${lazyMap.toList()}")
+
+    val decoration = listOf("rock", "pagoda", "plastic plant", "allogator", "flowerpot")
+    println(decoration.filter {it[0] == 'p'})
 
     //eager create a nwe list
     val eager = decoration.filter{it[0] == 'p'}
@@ -46,26 +62,12 @@ fun main(args: Array<String>) {
     val filtered = decoration.asSequence().filter {it[0] == 'p'}
     println("filtered: $filtered")
 
-    val filtroPlaneado = decoration.asSequence().filter{it[0] == 'p'}
-    println(filtroPlaneado)
+    val filtroPlaneado2 = decoration.asSequence().filter{it[0] == 'p'}
+    println(filtroPlaneado2)
 
     //force evaluation of the lazy list
     val newList = filtered.toList()
     println("new list: $newList")
-
-
-    val lazyMap = decoration.asSequence().map {
-        println("acces: $it")
-        it
-    }
-
-    println("lazy: $lazyMap")
-    println("---------------")
-    println("first: ${lazyMap.first()}")
-    println("---------------")
-    println("first: ${lazyMap.last()}")
-    println("---------------")
-    println("all: ${lazyMap.toList()}")
 }
 
 
@@ -106,6 +108,8 @@ fun shouldChangeWater (day: String, temperature: Int = 22, dirty: Int = 20 ): Bo
 }
 
 //fun shouldChangeWater (day: String, temperature: Int = 22, dirty: Int = getDirtySensorReading()): Boolean {}
+
+fun getSensorDirtyReading() = 20
 
 fun isTooHot (temperature: Int) = temperature > 30
 

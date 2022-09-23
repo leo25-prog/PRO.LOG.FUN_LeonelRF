@@ -1,7 +1,7 @@
 package Generics;
 
 class LateWater : WaterSupply(true) {
-    fun filter{
-        needsProcessing = false
+    fun filter(){
+        needProcessing = false
     }
 }

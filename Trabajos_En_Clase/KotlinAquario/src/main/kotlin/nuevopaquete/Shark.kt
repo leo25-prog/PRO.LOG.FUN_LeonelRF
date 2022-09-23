@@ -1,8 +1,8 @@
 package nuevopaquete
 
-class Shark : /*AquariumFish(),*/ FishAction, FishColor {
+class Shark : FishAction, FishColor {
     override val color: String
-    get() = "gray"
+        get() = "gray"
 
     override fun eat(){
         println("hunt and eat fish")

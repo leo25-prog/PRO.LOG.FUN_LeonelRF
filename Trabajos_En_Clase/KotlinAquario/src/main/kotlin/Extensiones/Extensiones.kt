@@ -3,7 +3,6 @@ package Extensiones
 open class AquariumPlant (val color : String, private val size : Int)
 class GreenLeafyPlant(size: Int ) : AquariumPlant ("green", size)
 
-
 fun AquariumPlant.isRed() = color == "red"
 //fun AquariumPlant.isBig() = size > 50
 

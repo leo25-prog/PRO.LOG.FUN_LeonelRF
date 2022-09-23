@@ -11,32 +11,32 @@ class TapWater : WaterSupply (true){
 //class Aquarium <T> (val waterSupply: T)
 class Aquarium <T: WaterSupply> (val waterSupply: T){
     fun addWater(){
-        check(!waterSupply.needProcessing){ "El agua necesita primero procesarse" }
+        check(!waterSupply.needProcessing){ "El agua necesita procesarse" }
         println("Agregando agua de ${waterSupply::class.simpleName}")
     }
 }
 
 fun main (){
     val aq1 = Aquarium <TapWater> (TapWater())
-    println("El agua necesita procesarse: ${aq1.waterSupply.needProcessing}" )
+    //val aq1 = Aquarium (TapWater())
+    println("El agua necesita procesarse: ${aq1.waterSupply.needProcessing}")
     aq1.waterSupply.addChemicalCleaners()
     println("El agua necesita procesarse: ${aq1.waterSupply.needProcessing}")
-
 /*
-    val aq2 = Aquarium <TapWater> ("Cadena")
+    val aq2 = Aquarium ("Cadena")
     println("El agua necesita procesarse: ${aq2.waterSupply}" )
     aq1.waterSupply.addChemicalCleaners()
     println("El agua necesita procesarse: ${aq2.waterSupply}")
 */
-    val aq2 = Aquarium <TapWater> (LateWater)
-    println("El agua necesita procesarse: ${aq2.waterSupply}" )
+    val aq3 = Aquarium (LateWater())
+    println("El agua necesita procesarse: ${aq1.waterSupply}" )
     aq1.waterSupply.addChemicalCleaners()
-    println("El agua necesita procesarse: ${aq2.waterSupply}")
+    println("El agua necesita procesarse: ${aq1.waterSupply}")
 
     val aq4 = Aquarium (TapWater())
     aq4.waterSupply.addChemicalCleaners()
     aq4.addWater()
-    println("El agua necesita procesarse: ${aq4.waterSupply}" )
+    println("El agua necesita procesarse: ${aq4.waterSupply.needProcessing}" )
     aq1.waterSupply.addChemicalCleaners()
-    println("El agua necesita procesarse: ${aq4.waterSupply}")
+    println("El agua necesita procesarse: ${aq4.waterSupply.needProcessing}")
 }
